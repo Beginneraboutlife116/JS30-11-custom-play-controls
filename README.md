@@ -1,6 +1,7 @@
 # TODO
-- [ ] Initial style
-- [ ] Play/pause
+
+- [x] Initial style
+- [x] Play/pause
 - [ ] Mute
 - [ ] Volume control by slider
 - [ ] Progress bar
