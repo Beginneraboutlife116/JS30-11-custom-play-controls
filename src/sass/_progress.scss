@@ -1,0 +1,25 @@
+@mixin progress-style {
+  flex: 1 0 100%;
+  background-color: var(--bg-progress);
+  height: .5rem;
+  
+  @media (min-width: 37.5em) {
+    flex: 0 0 calc(100% - 2rem);
+    margin-inline: auto;
+  }
+}
+
+.progress {
+  @include progress-style;
+
+  &::-webkit-progress-bar {
+    @include progress-style;
+  }
+
+  &__bar {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    background-color: var(--clr-progress-bar);
+  }
+}

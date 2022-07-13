@@ -94,6 +94,10 @@ button {
   cursor: pointer;
 }
 
+progress {
+  background-color: var(--bg-progress);
+}
+
 :root {
   --bg-image: conic-gradient(at 0% 0%, snow, white);
   --bg-progress: hwb(0 100% 0% / 0.4);
@@ -125,6 +129,18 @@ body {
   background-image: url(./src/image/pause-icon.png);
 }
 
+[data-state=large] {
+  background-image: url(./src/image/volume-lg-icon.png);
+}
+
+[data-state=medium] {
+  background-image: url(./src/image/volume-md-icon.png);
+}
+
+[data-state=mute] {
+  background-image: url(./src/image/volume-none-icon.png);
+}
+
 .player {
   position: relative;
 }
@@ -136,10 +152,58 @@ body {
   inset: 0;
   pointer-events: none;
 }
+.player__controls {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+}
 .player__button {
-  width: 30%;
-  aspect-ratio: 1;
-  background-size: contain;
+  padding: clamp(0.5rem, 2.5vw, 1rem) clamp(1rem, 4vw, 1.5rem);
+  background-size: 45% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.player__volume {
+  display: flex;
+}
+.player__playback-rate {
+  display: none;
+}
+
+@media (min-width: 37.5em) {
+  .play-pause {
+    margin-left: 1rem;
+  }
+}
+
+.progress {
+  flex: 1 0 100%;
+  background-color: var(--bg-progress);
+  height: 0.5rem;
+}
+@media (min-width: 37.5em) {
+  .progress {
+    flex: 0 0 calc(100% - 2rem);
+    margin-inline: auto;
+  }
+}
+.progress::-webkit-progress-bar {
+  flex: 1 0 100%;
+  background-color: var(--bg-progress);
+  height: 0.5rem;
+}
+@media (min-width: 37.5em) {
+  .progress::-webkit-progress-bar {
+    flex: 0 0 calc(100% - 2rem);
+    margin-inline: auto;
+  }
+}
+.progress__bar {
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  background-color: var(--clr-progress-bar);
 }
 
 /*# sourceMappingURL=style.css.map */

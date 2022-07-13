@@ -13,3 +13,15 @@
 [data-state="pause"] {
   background-image: url(./src/image/pause-icon.png);
 }
+
+[data-state="large"] {
+  background-image: url(./src/image/volume-lg-icon.png);
+}
+
+[data-state="medium"] {
+  background-image: url(./src/image/volume-md-icon.png);
+}
+
+[data-state="mute"] {
+  background-image: url(./src/image/volume-none-icon.png);
+}

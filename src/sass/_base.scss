@@ -12,6 +12,10 @@ button {
   cursor: pointer;
 }
 
+progress {
+  background-color: var(--bg-progress);
+}
+
 :root {
   --bg-image: conic-gradient(at 0% 0%, snow, white);
   --bg-progress: hwb(0 100% 0% / 0.4);
