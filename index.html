@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11-custom-video-player-controls</title>
+  </head>
+  <body>
+    <figure class="player">
+      <video
+        class="player__video"
+        preload="metadata"
+        poster="./src/image/poster.png"
+        controls
+      >
+        <source src="./src/652333414.mp4" />
+      </video>
+
+      <div class="player__controls">
+        <progress class="progress">
+          <span class="progress__bar"></span>
+        </progress>
+        <button
+          class="player__button play-pause"
+          type="button"
+          data-state="play"
+          aria-label="play or pause"
+        ></button>
+        <div class="volume__control volume">
+          <button
+            class="player__button"
+            data-state="large"
+            aria-label="volume adjustment"
+            type="button"
+          ></button>
+          <input
+            type="range"
+            id="volume"
+            name="volume"
+            class="player__slider"
+            min="0"
+            max="1"
+            step="0.05"
+            value="1"
+          />
+        </div>
+        <button
+          class="player__button setting"
+          aria-label="playback rate setting"
+        ></button>
+        <dialog class="player__playback-rate dialog" data-dialog open="true">
+          <h1 class="dialog__title">播放速度</h1>
+          <input
+            type="range"
+            name="playbackRate"
+            id="playbackRate"
+            class="player__slider"
+            min="0.5"
+            max="2"
+            step="0.1"
+            value="1"
+          />
+          <label for="playbackRate">1x</label>
+        </dialog>
+        <!-- <button
+          data-skip="-20"
+          class="player__button"
+          aria-label="backward button"
+        >
+          <i class="fas fa-backward"></i>
+        </button>
+        <button
+          data-skip="20"
+          class="player__button"
+          aria-label="forward button"
+        >
+          <i class="fas fa-forward"></i>
+        </button> -->
+        <button class="player__button fullscreen" data-state="go-fullscreen" aria-label="full screen" type="button"></button>
+      </div>
+    </figure>
+  </body>
+</html>
