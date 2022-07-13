@@ -1,0 +1,29 @@
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+:root {
+  --bg-image: conic-gradient(at 0% 0%, snow, white);
+  --bg-progress: hwb(0 100% 0% / 0.4);
+  --bg-dialog: hwb(0 0% 100% / 0.8);
+
+  --clr-progress-bar: hwb(0 0% 0%);
+  --clr-font: hwb(0 100% 0% / 0.8);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background-image: var(--bg-image);
+}

@@ -1,0 +1,15 @@
+[data-state="hidden"] {
+  display: none;
+}
+
+[data-state="visible"] {
+  display: block;
+}
+
+[data-state="play"] {
+  background-image: url(./src/image/play-icon.png);
+}
+
+[data-state="pause"] {
+  background-image: url(./src/image/pause-icon.png);
+}

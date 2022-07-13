@@ -3,28 +3,35 @@
 *::after {
   box-sizing: border-box;
 }
+
 * {
   margin: 0;
 }
+
 html:focus-within {
   scroll-behavior: smooth;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   line-height: calc(1em + 0.5rem);
   text-rendering: optimizeSpeed;
 }
-ul[role="list"],
-ol[role="list"] {
+
+ul[role=list],
+ol[role=list] {
   list-style: none;
 }
+
 a:not([class]) {
   -webkit-text-decoration-skip-ink: all;
   text-decoration-skip-ink: all;
 }
+
 img,
 picture,
 video,
@@ -33,6 +40,7 @@ svg {
   display: block;
   max-width: 100%;
 }
+
 input,
 button,
 textarea,
@@ -40,6 +48,7 @@ select {
   font: inherit;
   font-size: max(16px, 1rem);
 }
+
 p,
 h1,
 h2,
@@ -49,6 +58,7 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
 /* Using below when you use framework */
 /* #root, #__next {
   isolation: isolate;
@@ -60,8 +70,8 @@ h6 {
   }
 
   *,
-  *::before,
-  *::after {
+*::before,
+*::after {
     -webkit-animation-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     -webkit-animation-iteration-count: 1 !important;
@@ -70,3 +80,66 @@ h6 {
     scroll-behavior: auto !important;
   }
 }
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+:root {
+  --bg-image: conic-gradient(at 0% 0%, snow, white);
+  --bg-progress: hwb(0 100% 0% / 0.4);
+  --bg-dialog: hwb(0 0% 100% / 0.8);
+  --clr-progress-bar: hwb(0 0% 0%);
+  --clr-font: hwb(0 100% 0% / 0.8);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background-image: var(--bg-image);
+}
+
+[data-state=hidden] {
+  display: none;
+}
+
+[data-state=visible] {
+  display: block;
+}
+
+[data-state=play] {
+  background-image: url(./src/image/play-icon.png);
+}
+
+[data-state=pause] {
+  background-image: url(./src/image/pause-icon.png);
+}
+
+.player {
+  position: relative;
+}
+.player__poster {
+  position: absolute;
+  background-image: url(./src/image/poster.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  inset: 0;
+  pointer-events: none;
+}
+.player__button {
+  width: 30%;
+  aspect-ratio: 1;
+  background-size: contain;
+}
+
+/*# sourceMappingURL=style.css.map */

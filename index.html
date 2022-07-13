@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>11-custom-video-player-controls</title>
+    <script src="main.js" defer></script>
   </head>
   <body>
     <figure class="player">
       <video
         class="player__video"
         preload="metadata"
-        poster="./src/image/poster.png"
         controls
       >
         <source src="./src/652333414.mp4" />
       </video>
+      <div class="player__poster" data-state="visible"></div>
 
-      <div class="player__controls">
-        <progress class="progress">
+      <div class="player__controls" data-state="hidden">
+        <progress class="progress" min="0" value="0">
           <span class="progress__bar"></span>
         </progress>
         <button
@@ -77,7 +79,12 @@
         >
           <i class="fas fa-forward"></i>
         </button> -->
-        <button class="player__button fullscreen" data-state="go-fullscreen" aria-label="full screen" type="button"></button>
+        <button
+          class="player__button fullscreen"
+          data-state="go-fullscreen"
+          aria-label="full screen"
+          type="button"
+        ></button>
       </div>
     </figure>
   </body>
