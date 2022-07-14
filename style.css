@@ -86,6 +86,7 @@ h6 {
   --bg-dialog: hwb(0 0% 100% / 0.75);
   --clr-progress-bar: hwb(0 0% 0%);
   --clr-font: hwb(0 100% 0% / 0.8);
+  --clr-default-arrow: hwb(0 100% 0%);
 }
 
 body {
@@ -118,12 +119,22 @@ progress {
   background-color: var(--bg-progress);
 }
 
+@keyframes arrowOpacity {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
 [data-state=hidden] {
   display: none;
+  --animation-state: paused;
 }
 
 [data-state=visible] {
   display: block;
+  --animation-state: running;
 }
 
 [data-state=play] {
@@ -148,6 +159,48 @@ progress {
 
 [data-state=mute] {
   background-image: url(./src/image/volume-none-icon.png);
+}
+
+[data-state=forward] {
+  --clr-forward-arrow: var(--clr-default-arrow);
+  --arrow-margin: auto -0.2rem;
+  --forward-position: 0;
+}
+[data-state=forward] .arrow:nth-child(1) {
+  --delay: 200ms;
+  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
+  animation-play-state: var(--animation-state);
+}
+[data-state=forward] .arrow:nth-child(2) {
+  --delay: 400ms;
+  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
+  animation-play-state: var(--animation-state);
+}
+[data-state=forward] .arrow:nth-child(3) {
+  --delay: 600ms;
+  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
+  animation-play-state: var(--animation-state);
+}
+
+[data-state=backward] {
+  --clr-backward-arrow: var(--clr-default-arrow);
+  --arrow-margin: -0.2rem auto;
+  --backward-position: 6rem;
+}
+[data-state=backward] .arrow:nth-child(3) {
+  --delay: 200ms;
+  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
+  animation-play-state: var(--animation-state);
+}
+[data-state=backward] .arrow:nth-child(2) {
+  --delay: 400ms;
+  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
+  animation-play-state: var(--animation-state);
+}
+[data-state=backward] .arrow:nth-child(1) {
+  --delay: 600ms;
+  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
+  animation-play-state: var(--animation-state);
 }
 
 .player {
@@ -195,6 +248,37 @@ progress {
   aspect-ratio: 1;
   border-radius: 50%;
   margin-block-start: calc((0.25rem - var(--thumb-width)) / 2);
+}
+.player__skip-signal {
+  position: absolute;
+  inset: 0;
+  background-color: hwb(0 0% 100%/0.2);
+}
+.player__skip-signal .circle {
+  width: 6rem;
+  aspect-ratio: 1;
+  background-color: hwb(0 0% 100%/0.8);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: absolute;
+  inset: 50% var(--forward-position, auto) auto var(--backward-position, auto);
+  transform: translate(-50%, -50%);
+}
+.player__skip-signal .circle .text {
+  font-size: 0.75rem;
+  color: var(--clr-font);
+}
+.player__skip-signal .arrow {
+  display: inline-block;
+  border-width: 0.4rem 0.6rem;
+  border-style: solid;
+  border-color: transparent var(--clr-backward-arrow, transparent) transparent var(--clr-forward-arrow, transparent);
+  margin-inline: var(--arrow-margin, auto);
+  opacity: 0.6;
 }
 
 .dialog {
