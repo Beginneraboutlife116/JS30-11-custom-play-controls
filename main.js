@@ -25,6 +25,15 @@ function changeButtonState(type) {
     playOrPauseBtn.dataset.state =
       video.paused || video.ended ? "play" : "pause"
   }
+  if (type === 'volume') {
+    if (video.muted || video.volume === 0) {
+      volumeBtn.dataset.state = 'mute'
+    } else if (video.volume <= 0.5) {
+      volumeBtn.dataset.state = 'medium'
+    } else {
+      volumeBtn.dataset.state = 'large'
+    }
+  }
 }
 
 //* Program
@@ -37,3 +46,7 @@ if (supportsVideo) {
 
 video.addEventListener("click", playOrPauseVideo)
 playOrPauseBtn.addEventListener("click", playOrPauseVideo)
+volumeBtn.addEventListener('click', () => {
+  video.muted = !video.muted
+  changeButtonState('volume')
+})

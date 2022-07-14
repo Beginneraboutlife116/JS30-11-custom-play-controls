@@ -22,20 +22,33 @@
     background-size: 45% auto;
     background-position: center;
     background-repeat: no-repeat;
-
   }
-  
+
   &__volume {
     display: flex;
   }
-  
+
+  &__slider {
+    --slider-width: clamp(3rem, 15vw, 5rem);
+    --thumb-width: clamp(0.75rem, 3vw, 1rem);
+    width: var(--slider-width);
+    &::-webkit-slider-runnable-track {
+      background-color: #fff;
+      height: 0.25rem;
+    }
+    &::-webkit-slider-thumb {
+      appearance: none;
+      border: none;
+      background-color: #fff;
+      width: clamp(0.75rem, 3vw, 1rem);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      margin-block-start: calc((0.25rem - var(--thumb-width)) / 2);
+    }
+  }
+
   &__playback-rate {
     display: none;
   }
-}
 
-.play-pause {
-  @media (min-width: 37.5em) {
-    margin-left: 1rem;
-  }
 }
