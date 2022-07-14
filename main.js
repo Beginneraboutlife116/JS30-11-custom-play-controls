@@ -100,6 +100,7 @@ if (supportsVideo) {
 if (!supportsProgress) progress.setAttribute("data-state", "fake")
 
 playOrPauseBtn.addEventListener("click", playOrPauseVideo)
+
 volumeBtn.addEventListener("click", () => {
   video.muted = !video.muted
   changeButtonState("volume")
@@ -153,4 +154,10 @@ window.addEventListener("click", (e) => {
       settingBtn.style.setProperty("--degree", "0deg")
     }
   }
+})
+
+window.addEventListener("keydown", (e) => {
+  if (e.code === "ArrowRight") video.currentTime += 10
+  if (e.code === "ArrowLeft") video.currentTime -= 10
+  poster.dataset.state = video.currentTime !== 0 ? "hidden" : "visible"
 })
