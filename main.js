@@ -8,6 +8,9 @@ const playOrPauseBtn = document.querySelector(".play-pause")
 const volumeBtn = document.querySelector(".volume")
 const settingBtn = document.querySelector(".setting")
 const dialog = document.querySelector(".dialog")
+const skipSignal = document.querySelector(".player__skip-signal")
+const skipCircle = document.querySelector(".circle")
+const skipArrows = document.querySelectorAll(".arrow")
 const fullscreen = document.querySelector(".fullscreen")
 let mouseDownForProgress
 
@@ -176,7 +179,40 @@ window.addEventListener("click", (e) => {
 })
 
 window.addEventListener("keydown", (e) => {
-  if (e.code === "ArrowRight") video.currentTime += 10
-  if (e.code === "ArrowLeft") video.currentTime -= 10
+  let lastArrow
+  if (e.code === "ArrowRight") {
+    video.currentTime += 10
+    skipSignal.dataset.state = "visible"
+    skipCircle.setAttribute("data-state", "forward")
+    lastArrow = 2
+    skipArrows.forEach((arrow, index) => {
+      arrow.setAttribute("data-order", `${index + 1}`)
+      arrow.addEventListener(
+        "animationend",
+        () => {
+          arrow.removeAttribute("data-order")
+          if (index === lastArrow) skipSignal.dataset.state = "hidden"
+        },
+        { once: true }
+      )
+    })
+  }
+  if (e.code === "ArrowLeft") {
+    video.currentTime -= 10
+    skipSignal.dataset.state = "visible"
+    skipCircle.setAttribute("data-state", "backward")
+    lastArrow = 0
+    skipArrows.forEach((arrow, index) => {
+      arrow.setAttribute("data-order", `${3 - index}`)
+      arrow.addEventListener(
+        "animationend",
+        () => {
+          arrow.removeAttribute("data-order")
+          if (index === lastArrow) skipSignal.dataset.state = "hidden"
+        },
+        { once: true }
+      )
+    })
+  }
   poster.dataset.state = video.currentTime !== 0 ? "hidden" : "visible"
 })

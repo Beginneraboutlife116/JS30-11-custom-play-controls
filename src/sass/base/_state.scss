@@ -1,11 +1,9 @@
 [data-state="hidden"] {
   display: none;
-  --animation-state: paused;
 }
 
 [data-state="visible"] {
   display: block;
-  --animation-state: running;
 }
 
 [data-state="play"] {
@@ -36,13 +34,11 @@
   --clr-forward-arrow: var(--clr-default-arrow);
   --arrow-margin: auto -0.2rem;
   --forward-position: 0;
+}
 
-  @for $i from 1 through 3 {
-    .arrow:nth-child(#{$i}) {
-      --delay: #{200 * $i}ms;
-      animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-      animation-play-state: var(--animation-state);
-    }
+@for $i from 1 through 3 {
+  [data-order="#{$i}"] {
+    animation: arrow-#{$i} 500ms ease;
   }
 }
 
@@ -50,12 +46,4 @@
   --clr-backward-arrow: var(--clr-default-arrow);
   --arrow-margin: -0.2rem auto;
   --backward-position: 6rem;
-
-  @for $i from 1 through 3 {
-    .arrow:nth-child(#{4 - $i}) {
-      --delay: #{200 * $i}ms;
-      animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-      animation-play-state: var(--animation-state);
-    }
-  }
 }

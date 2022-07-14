@@ -119,22 +119,36 @@ progress {
   background-color: var(--bg-progress);
 }
 
-@keyframes arrowOpacity {
+@keyframes arrow-1 {
   0% {
     opacity: 1;
   }
-  50% {
-    opacity: 0.8;
+  30% {
+    opacity: 0.7;
+  }
+}
+@keyframes arrow-2 {
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.7;
+  }
+}
+@keyframes arrow-3 {
+  60% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.7;
   }
 }
 [data-state=hidden] {
   display: none;
-  --animation-state: paused;
 }
 
 [data-state=visible] {
   display: block;
-  --animation-state: running;
 }
 
 [data-state=play] {
@@ -166,41 +180,23 @@ progress {
   --arrow-margin: auto -0.2rem;
   --forward-position: 0;
 }
-[data-state=forward] .arrow:nth-child(1) {
-  --delay: 200ms;
-  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-  animation-play-state: var(--animation-state);
+
+[data-order="1"] {
+  animation: arrow-1 500ms ease;
 }
-[data-state=forward] .arrow:nth-child(2) {
-  --delay: 400ms;
-  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-  animation-play-state: var(--animation-state);
+
+[data-order="2"] {
+  animation: arrow-2 500ms ease;
 }
-[data-state=forward] .arrow:nth-child(3) {
-  --delay: 600ms;
-  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-  animation-play-state: var(--animation-state);
+
+[data-order="3"] {
+  animation: arrow-3 500ms ease;
 }
 
 [data-state=backward] {
   --clr-backward-arrow: var(--clr-default-arrow);
   --arrow-margin: -0.2rem auto;
   --backward-position: 6rem;
-}
-[data-state=backward] .arrow:nth-child(3) {
-  --delay: 200ms;
-  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-  animation-play-state: var(--animation-state);
-}
-[data-state=backward] .arrow:nth-child(2) {
-  --delay: 400ms;
-  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-  animation-play-state: var(--animation-state);
-}
-[data-state=backward] .arrow:nth-child(1) {
-  --delay: 600ms;
-  animation: arrowOpacity 600ms ease var(--delay, 0s) infinite;
-  animation-play-state: var(--animation-state);
 }
 
 .player {
@@ -278,7 +274,7 @@ progress {
   border-style: solid;
   border-color: transparent var(--clr-backward-arrow, transparent) transparent var(--clr-forward-arrow, transparent);
   margin-inline: var(--arrow-margin, auto);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .dialog {

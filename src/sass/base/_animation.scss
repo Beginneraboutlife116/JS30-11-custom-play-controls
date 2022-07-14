@@ -1,8 +1,10 @@
-@keyframes arrowOpacity {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
+@for $i from 0 through 2 {
+  @keyframes arrow-#{$i + 1} {
+    #{$i * 30%} {
+      opacity: 1;
+    }
+    #{($i + 1) * 30%} {
+      opacity: 0.7;
+    }
   }
 }
