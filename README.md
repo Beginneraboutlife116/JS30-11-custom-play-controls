@@ -7,6 +7,7 @@
 - [x] Playback rate control by slider
 - [x] Progress bar
 - [x] Does ending have issue?
-- [ ] Skip ahead without button, try to mimic youtube
+- [x] Skip ahead without button
+- [ ] Skip style
 - [ ] Timer
 - [ ] Go fullScreen

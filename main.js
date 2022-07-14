@@ -9,6 +9,7 @@ const volumeBtn = document.querySelector(".volume")
 const settingBtn = document.querySelector(".setting")
 const dialog = document.querySelector(".dialog")
 const fullscreen = document.querySelector(".fullscreen")
+let mouseDownForProgress
 
 //* Functions
 function playOrPauseVideo() {
@@ -30,6 +31,13 @@ function changeButtonState(type) {
   }
 }
 
+function setProgressTime(event) {
+  const time = (event.offsetX / progress.clientWidth) * video.duration
+  progress.value = time
+  video.currentTime = time
+  poster.dataset.state = video.currentTime !== 0 ? "hidden" : "visible"
+}
+
 //* Class
 class Slider {
   #mouseDown = false
@@ -43,19 +51,19 @@ class Slider {
   }
 
   mouseEvent() {
-    this.htmlElement.addEventListener("mousedown", () => {
-      this.#mouseDown = true
-    })
+    this.htmlElement.addEventListener(
+      "mousedown",
+      () => (this.#mouseDown = true)
+    )
     this.htmlElement.addEventListener("mousemove", (event) => {
       if (!this.#mouseDown) return
       const value = Number.parseFloat(event.target.value)
       video[this.mediaAPI] = value.toString()
     })
-    this.htmlElement.addEventListener("mouseup", (event) => {
-      const value = Number.parseFloat(event.target.value)
-      video[this.mediaAPI] = value.toString()
-      this.#mouseDown = false
-    })
+    this.htmlElement.addEventListener(
+      "mouseup",
+      () => (this.#mouseDown = false)
+    )
   }
 
   changeEvent() {
@@ -118,10 +126,17 @@ settingBtn.addEventListener("click", () => {
   settingBtn.style.setProperty("--degree", dialog.open ? "30deg" : "0deg")
 })
 
+progress.addEventListener("mousedown", () => (mouseDownForProgress = true))
+
+progress.addEventListener("mousemove", (e) => {
+  if (!mouseDownForProgress) return
+  setProgressTime(e)
+})
+
+progress.addEventListener("mouseup", () => (mouseDownForProgress = false))
+
 progress.addEventListener("click", (e) => {
-  const time = (e.offsetX / progress.clientWidth) * video.duration
-  progress.value = time
-  video.currentTime = time
+  setProgressTime(e)
 })
 
 video.addEventListener("click", playOrPauseVideo)
