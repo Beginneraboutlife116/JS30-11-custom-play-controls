@@ -16,3 +16,11 @@
     margin-inline-end: 1rem;
   }
 }
+
+.decoration {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: var(--clr-font);
+  opacity: .5;
+}

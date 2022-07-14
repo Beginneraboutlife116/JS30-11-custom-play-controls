@@ -1,7 +1,21 @@
+body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background-image: var(--bg-image);
+  color: var(--clr-font);
+}
+
 input[type="range"] {
   appearance: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  color: inherit;
 }
 
 button {
@@ -21,11 +35,4 @@ progress {
 
   --clr-progress-bar: hwb(0 0% 0%);
   --clr-font: hwb(0 100% 0% / 0.8);
-}
-
-body {
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
-  background-image: var(--bg-image);
 }

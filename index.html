@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>11-custom-video-player-controls</title>
     <script src="main.js" defer></script>
   </head>
   <body>
     <figure class="player">
-      <video
-        class="player__video"
-        preload="metadata"
-        controls
-      >
+      <video class="player__video" preload="metadata" controls>
         <source src="./src/652333414.mp4" />
       </video>
       <div class="player__poster" data-state="visible"></div>
@@ -51,19 +47,22 @@
           class="player__button setting"
           aria-label="playback rate setting"
         ></button>
-        <dialog class="player__playback-rate dialog" data-dialog open="true">
-          <h1 class="dialog__title">播放速度</h1>
-          <input
-            type="range"
-            name="playbackRate"
-            id="playbackRate"
-            class="player__slider"
-            min="0.5"
-            max="2"
-            step="0.1"
-            value="1"
-          />
-          <label for="playbackRate">1x</label>
+        <dialog class="player__playback-rate dialog" data-dialog>
+          <div class="dialog__container">
+            <h1 class="dialog__title">播放速度</h1>
+            <hr class="decoration" />
+            <input
+              type="range"
+              name="playbackRate"
+              id="playbackRate"
+              class="player__slider"
+              min="0.5"
+              max="2"
+              step="0.1"
+              value="1"
+            />
+            <label for="playbackRate">1x</label>
+          </div>
         </dialog>
         <!-- <button
           data-skip="-20"

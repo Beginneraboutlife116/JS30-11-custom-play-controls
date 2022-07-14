@@ -29,14 +29,19 @@
   }
 
   &__slider {
-    --slider-width: clamp(3rem, 15vw, 5rem);
-    --thumb-width: clamp(0.75rem, 3vw, 1rem);
-    width: var(--slider-width);
+    width: var(--slider-width, auto);
+
+    &[name="volume"] {
+      --slider-width: clamp(3rem, 15vw, 5rem);
+    }
+
     &::-webkit-slider-runnable-track {
       background-color: #fff;
       height: 0.25rem;
     }
+
     &::-webkit-slider-thumb {
+      --thumb-width: clamp(0.75rem, 3vw, 1rem);
       appearance: none;
       border: none;
       background-color: #fff;
@@ -46,9 +51,4 @@
       margin-block-start: calc((0.25rem - var(--thumb-width)) / 2);
     }
   }
-
-  &__playback-rate {
-    display: none;
-  }
-
 }

@@ -112,6 +112,14 @@ volumeSlider.mouseEvent()
 volumeSlider.changeEvent()
 volumeSlider.wheelEvent()
 
+playbackRateSlider.mouseEvent()
+playbackRateSlider.changeEvent()
+playbackRateSlider.wheelEvent()
+
 video.addEventListener("volumechange", () => {
   changeButtonState("volume")
+})
+
+settingBtn.addEventListener('click', () => {
+  dialog.open = !dialog.open
 })
