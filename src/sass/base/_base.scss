@@ -1,3 +1,12 @@
+:root {
+  --bg-image: conic-gradient(at 0% 0%, snow, white);
+  --bg-progress: hwb(0 100% 0% / 0.4);
+  --bg-dialog: hwb(0 0% 100% / 0.75);
+
+  --clr-progress-bar: hwb(0 0% 0%);
+  --clr-font: hwb(0 100% 0% / 0.8);
+}
+
 body {
   min-height: 100vh;
   display: grid;
@@ -26,13 +35,4 @@ button {
 
 progress {
   background-color: var(--bg-progress);
-}
-
-:root {
-  --bg-image: conic-gradient(at 0% 0%, snow, white);
-  --bg-progress: hwb(0 100% 0% / 0.4);
-  --bg-dialog: hwb(0 0% 100% / 0.8);
-
-  --clr-progress-bar: hwb(0 0% 0%);
-  --clr-font: hwb(0 100% 0% / 0.8);
 }

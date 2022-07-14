@@ -24,13 +24,9 @@ function changeButtonState(type) {
       video.paused || video.ended ? "play" : "pause"
   }
   if (type === "volume") {
-    if (video.muted) {
-      volumeBtn.dataset.state = "mute"
-    } else if (video.volume === 0) {
-      volumeBtn.dataset.state = "mute"
-    } else {
-      volumeBtn.dataset.state = "sound"
-    }
+    if (video.muted) volumeBtn.dataset.state = "mute"
+    else if (video.volume === 0) volumeBtn.dataset.state = "mute"
+    else volumeBtn.dataset.state = "sound"
   }
 }
 
@@ -85,20 +81,6 @@ class Slider {
 }
 
 //* Program
-const supportsVideo = !!document.createElement("video").canPlayType
-
-if (supportsVideo) {
-  video.controls = false
-  controls.dataset.state = "visible"
-}
-
-video.addEventListener("click", playOrPauseVideo)
-playOrPauseBtn.addEventListener("click", playOrPauseVideo)
-volumeBtn.addEventListener("click", () => {
-  video.muted = !video.muted
-  changeButtonState("volume")
-})
-
 const volumeSlider = new Slider({
   htmlElement: document.querySelector("input[id='volume']"),
   mediaAPI: "volume"
@@ -107,20 +89,68 @@ const playbackRateSlider = new Slider({
   htmlElement: document.querySelector("input[name='playbackRate']"),
   mediaAPI: "playbackRate"
 })
+const supportsVideo = !!document.createElement("video").canPlayType
+const supportsProgress = document.createElement("progress").max !== undefined
+
+if (supportsVideo) {
+  video.controls = false
+  controls.dataset.state = "visible"
+}
+
+if (!supportsProgress) progress.setAttribute("data-state", "fake")
+
+playOrPauseBtn.addEventListener("click", playOrPauseVideo)
+volumeBtn.addEventListener("click", () => {
+  video.muted = !video.muted
+  changeButtonState("volume")
+})
 
 volumeSlider.mouseEvent()
 volumeSlider.changeEvent()
 volumeSlider.wheelEvent()
-
 playbackRateSlider.mouseEvent()
 playbackRateSlider.changeEvent()
 playbackRateSlider.wheelEvent()
+
+settingBtn.addEventListener("click", () => {
+  dialog.open = !dialog.open
+  settingBtn.style.setProperty("--degree", dialog.open ? "30deg" : "0deg")
+})
+
+progress.addEventListener("click", (e) => {
+  const time = (e.offsetX / progress.clientWidth) * video.duration
+  progress.value = time
+  video.currentTime = time
+})
+
+video.addEventListener("click", playOrPauseVideo)
 
 video.addEventListener("volumechange", () => {
   changeButtonState("volume")
 })
 
-settingBtn.addEventListener("click", () => {
-  dialog.open = !dialog.open
-  settingBtn.style.setProperty("--degree", dialog.open ? "30deg" : "0deg")
+video.addEventListener("loadedmetadata", () => {
+  progress.setAttribute("max", video.duration)
+})
+
+video.addEventListener("timeupdate", () => {
+  if (!video.getAttribute("max")) progress.setAttribute("max", video.duration)
+
+  progress.value = video.currentTime
+  const progressBarWidth = (video.currentTime / video.duration) * 100
+  progress.style.setProperty("--bar-width", `${progressBarWidth}%`)
+  progressBar.style.setProperty("--bar-width", `${progressBarWidth}%`)
+})
+
+video.addEventListener("ended", () => {
+  changeButtonState("playOrPause")
+})
+
+window.addEventListener("click", (e) => {
+  if (e.target !== settingBtn) {
+    if (dialog.open) {
+      dialog.open = false
+      settingBtn.style.setProperty("--degree", "0deg")
+    }
+  }
 })
