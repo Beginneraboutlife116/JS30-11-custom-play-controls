@@ -145,9 +145,13 @@ video.addEventListener("volumechange", () => {
   changeButtonState("volume")
 })
 
-video.addEventListener("loadedmetadata", () => {
-  progress.setAttribute("max", video.duration)
-})
+video.addEventListener(
+  "loadedmetadata",
+  () => {
+    progress.setAttribute("max", video.duration)
+  },
+  { once: true }
+)
 
 video.addEventListener("timeupdate", () => {
   if (!video.getAttribute("max")) progress.setAttribute("max", video.duration)
