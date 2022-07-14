@@ -22,6 +22,10 @@
   background-image: url(./src/image/volume-md-icon.png);
 }
 
+[data-state="sound"] {
+  background-image: url(./src/image/volume-md-icon.png);
+}
+
 [data-state="mute"] {
   background-image: url(./src/image/volume-none-icon.png);
 }
