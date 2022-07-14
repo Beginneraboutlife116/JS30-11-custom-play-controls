@@ -120,6 +120,7 @@ video.addEventListener("volumechange", () => {
   changeButtonState("volume")
 })
 
-settingBtn.addEventListener('click', () => {
+settingBtn.addEventListener("click", () => {
   dialog.open = !dialog.open
+  settingBtn.style.setProperty("--degree", dialog.open ? "30deg" : "0deg")
 })

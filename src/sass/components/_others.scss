@@ -6,7 +6,21 @@
 
 .setting {
   margin-inline-start: auto;
-  background-image: url(./src/image/setting-icon.png);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url(./src/image/setting-icon.png);
+    padding: clamp(0.5rem, 2.5vw, 1rem) clamp(1rem, 4vw, 1.5rem);
+    background-size: 45% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: rotate(var(--degree, 0deg));
+    pointer-events: none;
+    transition: transform 200ms ease;
+  }
 }
 
 .fullscreen {
