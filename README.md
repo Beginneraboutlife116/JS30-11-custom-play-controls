@@ -8,6 +8,6 @@
 - [x] Progress bar
 - [x] Does ending have issue?
 - [x] Skip ahead without button
-- [ ] Skip ahead style
+- [x] Skip ahead style
 - [ ] Go fullScreen
 - [ ] Timer

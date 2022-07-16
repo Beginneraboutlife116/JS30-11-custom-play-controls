@@ -9,7 +9,7 @@
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: url(./src/image/setting-icon.png);
@@ -24,8 +24,6 @@
 }
 
 .fullscreen {
-  background-image: url(./src/image/fullscreen-icon.png);
-
   @media (min-width: 37.5em) {
     margin-inline-end: 1rem;
   }
@@ -36,5 +34,5 @@
   border: none;
   height: 1px;
   background-color: var(--clr-font);
-  opacity: .5;
+  opacity: 0.5;
 }

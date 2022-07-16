@@ -199,6 +199,14 @@ progress {
   --backward-position: 6rem;
 }
 
+[data-state=go-fullscreen] {
+  background-image: url(./src/image/go-fullscreen-icon.png);
+}
+
+[data-state=out-fullscreen] {
+  background-image: url(./src/image/out-fullscreen-icon.png);
+}
+
 .player {
   position: relative;
 }
@@ -386,9 +394,6 @@ progress {
   transition: transform 200ms ease;
 }
 
-.fullscreen {
-  background-image: url(./src/image/fullscreen-icon.png);
-}
 @media (min-width: 37.5em) {
   .fullscreen {
     margin-inline-end: 1rem;

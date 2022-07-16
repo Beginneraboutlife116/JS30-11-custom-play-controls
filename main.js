@@ -11,7 +11,7 @@ const dialog = document.querySelector(".dialog")
 const skipSignal = document.querySelector(".player__skip-signal")
 const skipCircle = document.querySelector(".circle")
 const skipArrows = document.querySelectorAll(".arrow")
-const fullscreen = document.querySelector(".fullscreen")
+const fullscreenBtn = document.querySelector(".fullscreen")
 let mouseDownForProgress
 
 //* Functions
@@ -39,6 +39,35 @@ function setProgressTime(event) {
   progress.value = time
   video.currentTime = time
   poster.dataset.state = video.currentTime !== 0 ? "hidden" : "visible"
+}
+
+//* fullscreen Function
+function handleFullscreen() {
+  if (isFullScreen()) {
+    if (document.exitFullscreen) document.exitFullscreen()
+    else if (document.mozCancelFullScreen) document.mozCancelFullScreen()
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen()
+    else if (document.msExitFullscreen) document.msExitFullscreen()
+
+    this.dataset.state = "go-fullscreen"
+  } else {
+    if (container.requestFullscreen) container.requestFullscreen()
+    else if (container.mozRequestFullScreen()) container.mozRequestFullScreen()
+    else if (container.webkitRequestFullScreen)
+      container.webkitRequestFullScreen()
+    else if (container.msRequestFullscreen) container.msRequestFullscreen()
+
+    this.dataset.state = "out-fullscreen"
+  }
+}
+
+function isFullScreen() {
+  return !!(
+    document.fullscreenElement ||
+    document.mozFullScreenElement ||
+    document.msFullscreenElement ||
+    document.webkitFullscreenElement
+  )
 }
 
 //* Class
@@ -215,4 +244,29 @@ window.addEventListener("keydown", (e) => {
     })
   }
   poster.dataset.state = video.currentTime !== 0 ? "hidden" : "visible"
+})
+
+//* FullScreen
+
+const fullScreenEnabled = !!(
+  document.fullscreenEnabled ||
+  document.mozFullScreenEnabled ||
+  document.msFullscreenEnabled ||
+  document.webkitFullscreenEnabled
+)
+
+if (!fullScreenEnabled) fullscreenBtn.dataset.state = "hidden"
+
+fullscreenBtn.addEventListener("click", handleFullscreen)
+
+document.addEventListener("fullscreenchange", () => {
+  fullscreenBtn.dataset.state = isFullScreen()
+    ? "out-fullscreen"
+    : "go-fullscreen"
+})
+
+document.addEventListener("webkitfullscreenchange", () => {
+  fullscreenBtn.dataset.state = isFullScreen()
+    ? "out-fullscreen"
+    : "go-fullscreen"
 })

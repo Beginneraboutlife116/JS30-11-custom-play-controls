@@ -47,3 +47,11 @@
   --arrow-margin: -0.2rem auto;
   --backward-position: 6rem;
 }
+
+[data-state="go-fullscreen"] {
+  background-image: url(./src/image/go-fullscreen-icon.png);
+}
+
+[data-state="out-fullscreen"] {
+  background-image: url(./src/image/out-fullscreen-icon.png);
+}
