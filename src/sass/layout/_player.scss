@@ -37,7 +37,22 @@
     width: var(--slider-width, auto);
 
     &[name="volume"] {
+      --slider-width: 0;
+      --thumb-width: 0;
+      transition: width 200ms ease-in;
+    }
+
+    .volume:hover + &[name="volume"] {
       --slider-width: clamp(3rem, 15vw, 5rem);
+      --thumb-width: clamp(0.75rem, 3vw, 1rem);
+
+      &::-webkit-slider-thumb {
+        transition: width 0ms ease-out 200ms;
+      }
+
+      &::-moz-range-thumb {
+        transition: width 0ms ease-out 200ms;
+      }
     }
 
     &[name="playbackRate"] {
@@ -55,22 +70,20 @@
     }
 
     &::-webkit-slider-thumb {
-      --thumb-width: clamp(0.75rem, 3vw, 1rem);
       appearance: none;
       border: none;
       background-color: #fff;
-      width: clamp(0.75rem, 3vw, 1rem);
+      width: var(--thumb-width);
       aspect-ratio: 1;
       border-radius: 50%;
       margin-block-start: calc((0.25rem - var(--thumb-width)) / 2);
     }
 
     &::-moz-range-thumb {
-      --thumb-width: clamp(0.75rem, 3vw, 1rem);
       appearance: none;
       border: none;
       background-color: #fff;
-      width: clamp(0.75rem, 3vw, 1rem);
+      width: var(--thumb-width);
       aspect-ratio: 1;
       border-radius: 50%;
       margin-block-start: calc((0.25rem - var(--thumb-width)) / 2);
