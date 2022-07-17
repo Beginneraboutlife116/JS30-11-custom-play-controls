@@ -2,7 +2,7 @@
   position: absolute;
   inset: -16vmin 0 auto auto;
   background-color: var(--bg-dialog);
-  width: 30%;
+  width: min(30%, 15rem);
   
   &__container {
     min-height: 15vmin;

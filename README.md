@@ -9,5 +9,5 @@
 - [x] Does ending have issue?
 - [x] Skip ahead without button
 - [x] Skip ahead style
-- [ ] Go fullScreen
+- [x] Go fullScreen
 - [ ] Timer
