@@ -39,7 +39,7 @@
     &[name="volume"] {
       --slider-width: 0;
       --thumb-width: 0;
-      transition: width 200ms ease-in;
+      transition: width 150ms linear;
     }
 
     .volume:hover + &[name="volume"] {
@@ -47,11 +47,11 @@
       --thumb-width: clamp(0.75rem, 3vw, 1rem);
 
       &::-webkit-slider-thumb {
-        transition: width 0ms ease-out 200ms;
+        transition: width 0ms linear 150ms;
       }
 
       &::-moz-range-thumb {
-        transition: width 0ms ease-out 200ms;
+        transition: width 0ms linear 150ms;
       }
     }
 

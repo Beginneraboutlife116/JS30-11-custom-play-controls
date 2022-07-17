@@ -244,17 +244,17 @@ button {
 .player__slider[name=volume] {
   --slider-width: 0;
   --thumb-width: 0;
-  transition: width 200ms ease-in;
+  transition: width 150ms linear;
 }
 .volume:hover + .player__slider[name=volume] {
   --slider-width: clamp(3rem, 15vw, 5rem);
   --thumb-width: clamp(0.75rem, 3vw, 1rem);
 }
 .volume:hover + .player__slider[name=volume]::-webkit-slider-thumb {
-  transition: width 0ms ease-out 200ms;
+  transition: width 0ms linear 150ms;
 }
 .volume:hover + .player__slider[name=volume]::-moz-range-thumb {
-  transition: width 0ms ease-out 200ms;
+  transition: width 0ms linear 150ms;
 }
 .player__slider[name=playbackRate] {
   --slider-width: 60%;
