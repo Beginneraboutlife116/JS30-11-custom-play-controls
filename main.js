@@ -121,6 +121,7 @@ class Slider {
       if (!this.#mouseDown) return
       const value = Number.parseFloat(event.target.value)
       video[this.mediaAPI] = value.toString()
+      this.showValue(value)
     })
     this.htmlElement.addEventListener(
       "mouseup",
@@ -132,6 +133,7 @@ class Slider {
     this.htmlElement.addEventListener("change", (event) => {
       const value = Number.parseFloat(event.target.value)
       video[this.mediaAPI] = value.toString()
+      this.showValue(value)
     })
   }
 
@@ -144,9 +146,16 @@ class Slider {
         this.value -= this.step
         this.value = this.value <= this.min ? this.min : this.value
       }
-      this.htmlElement.value = this.value.toString()
-      video[this.mediaAPI] = this.value.toString()
+      this.htmlElement.value = this.value.toFixed(1)
+      video[this.mediaAPI] = this.value.toFixed(1)
+      this.showValue(this.value.toFixed(1))
     })
+  }
+
+  showValue(value) {
+    if (this.mediaAPI === "playbackRate") {
+      this.htmlElement.nextElementSibling.textContent = `${value}x`
+    }
   }
 }
 
