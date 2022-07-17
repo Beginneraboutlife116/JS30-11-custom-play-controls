@@ -2,17 +2,25 @@ const container = document.querySelector(".player")
 const video = document.querySelector(".player__video")
 const poster = document.querySelector(".player__poster")
 const controls = document.querySelector(".player__controls")
+
 const progress = document.querySelector(".progress")
 const progressBar = document.querySelector(".progress__bar")
+
 const playOrPauseBtn = document.querySelector(".play-pause")
 const volumeBtn = document.querySelector(".volume")
 const settingBtn = document.querySelector(".setting")
+
 const dialog = document.querySelector(".dialog")
+
 const skipSignal = document.querySelector(".player__skip-signal")
 const skipCircle = document.querySelector(".circle")
 const skipArrows = document.querySelectorAll(".arrow")
+
 const fullscreenBtn = document.querySelector(".fullscreen")
 let mouseDownForProgress
+
+const currentTime = document.querySelector(".current-time")
+const totalTime = document.querySelector(".total-time")
 
 //* Functions
 function playOrPauseVideo() {
@@ -41,7 +49,7 @@ function setProgressTime(event) {
   poster.dataset.state = video.currentTime !== 0 ? "hidden" : "visible"
 }
 
-//* fullscreen Function
+//* Function: fullscreen
 function handleFullscreen() {
   if (isFullScreen()) {
     if (document.exitFullscreen) document.exitFullscreen()
@@ -68,6 +76,28 @@ function isFullScreen() {
     document.msFullscreenElement ||
     document.webkitFullscreenElement
   )
+}
+
+//* Function: timer
+function formatVideoTime(second) {
+  if (typeof second !== "number") {
+    throw new Error(
+      "If you want to format time, you need to input seconds which type is number"
+    )
+  }
+  const residualSecond = Math.floor(second % 60)
+    .toString()
+    .padStart(2, "0")
+  let minute = Math.floor(second / 60)
+  if (!minute) {
+    return `0:${residualSecond}`
+  }
+  const hour = Math.floor(minute / 60)
+  if (!hour) {
+    return `${minute}:${residualSecond}`
+  }
+  minute %= 60
+  return `${hour}:${minute.toString().padStart(2, "0")}:${residualSecond}`
 }
 
 //* Class
@@ -181,13 +211,19 @@ video.addEventListener(
   "loadedmetadata",
   () => {
     progress.setAttribute("max", video.duration)
+    currentTime.textContent = formatVideoTime(video.currentTime)
+    totalTime.textContent = formatVideoTime(video.duration)
   },
   { once: true }
 )
 
 video.addEventListener("timeupdate", () => {
-  if (!video.getAttribute("max")) progress.setAttribute("max", video.duration)
+  if (!video.getAttribute("max")) {
+    progress.setAttribute("max", video.duration)
+    totalTime.textContent = formatVideoTime(video.duration)
+  }
 
+  currentTime.textContent = formatVideoTime(video.currentTime)
   progress.value = video.currentTime
   const progressBarWidth = (video.currentTime / video.duration) * 100
   progress.style.setProperty("--bar-width", `${progressBarWidth}%`)
