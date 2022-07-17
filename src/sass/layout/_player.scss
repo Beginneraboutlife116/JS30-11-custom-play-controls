@@ -23,8 +23,9 @@
   }
 
   &__button {
-    padding: clamp(0.5rem, 2.5vw, 1rem) clamp(1rem, 4vw, 1.5rem);
-    background-size: 45% auto;
+    width: 5%;
+    aspect-ratio: 1;
+    background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -32,18 +33,21 @@
   &__volume {
     display: flex;
     align-items: center;
+    flex: 0 1 40%;
   }
 
   &__slider {
     width: var(--slider-width, auto);
+    height: 1rem;
+    --thumb-width: 0;
 
     &[name="volume"] {
       --slider-width: 0;
-      --thumb-width: 0;
       transition: width 150ms linear;
     }
 
-    .volume:hover + &[name="volume"] {
+    .volume:hover + &[name="volume"],
+    &[name="volume"]:hover {
       --slider-width: clamp(3rem, 15vw, 5rem);
       --thumb-width: clamp(0.75rem, 3vw, 1rem);
 
@@ -58,6 +62,7 @@
 
     &[name="playbackRate"] {
       --slider-width: 60%;
+      --thumb-width: clamp(0.75rem, 3vw, 1rem);
     }
 
     &::-webkit-slider-runnable-track {

@@ -230,35 +230,39 @@ button {
   flex-wrap: wrap;
 }
 .player__button {
-  padding: clamp(0.5rem, 2.5vw, 1rem) clamp(1rem, 4vw, 1.5rem);
-  background-size: 45% auto;
+  width: 5%;
+  aspect-ratio: 1;
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
 }
 .player__volume {
   display: flex;
   align-items: center;
+  flex: 0 1 40%;
 }
 .player__slider {
   width: var(--slider-width, auto);
+  height: 1rem;
+  --thumb-width: 0;
 }
 .player__slider[name=volume] {
   --slider-width: 0;
-  --thumb-width: 0;
   transition: width 150ms linear;
 }
-.volume:hover + .player__slider[name=volume] {
+.volume:hover + .player__slider[name=volume], .player__slider[name=volume]:hover {
   --slider-width: clamp(3rem, 15vw, 5rem);
   --thumb-width: clamp(0.75rem, 3vw, 1rem);
 }
-.volume:hover + .player__slider[name=volume]::-webkit-slider-thumb {
+.volume:hover + .player__slider[name=volume]::-webkit-slider-thumb, .player__slider[name=volume]:hover::-webkit-slider-thumb {
   transition: width 0ms linear 150ms;
 }
-.volume:hover + .player__slider[name=volume]::-moz-range-thumb {
+.volume:hover + .player__slider[name=volume]::-moz-range-thumb, .player__slider[name=volume]:hover::-moz-range-thumb {
   transition: width 0ms linear 150ms;
 }
 .player__slider[name=playbackRate] {
   --slider-width: 60%;
+  --thumb-width: clamp(0.75rem, 3vw, 1rem);
 }
 .player__slider::-webkit-slider-runnable-track {
   background-color: #fff;
@@ -344,7 +348,7 @@ button {
   appearance: none;
   flex: 1 0 100%;
   background-color: var(--bg-progress);
-  height: 0.375rem;
+  height: 0.5vmin;
   cursor: pointer;
   position: relative;
 }
@@ -358,7 +362,7 @@ button {
   appearance: none;
   flex: 1 0 100%;
   background-color: var(--bg-progress);
-  height: 0.375rem;
+  height: 0.5vmin;
   cursor: pointer;
   position: relative;
 }
@@ -372,7 +376,7 @@ button {
   appearance: none;
   flex: 1 0 100%;
   background-color: var(--bg-progress);
-  height: 0.375rem;
+  height: 0.5vmin;
   cursor: pointer;
   position: relative;
 }
@@ -415,6 +419,10 @@ button {
   }
 }
 
+.volume {
+  width: 12.5%;
+}
+
 .setting {
   margin-inline-start: auto;
   position: relative;
@@ -424,8 +432,7 @@ button {
   position: absolute;
   inset: 0;
   background-image: url(./src/image/setting-icon.png);
-  padding: clamp(0.5rem, 2.5vw, 1rem) clamp(1rem, 4vw, 1.5rem);
-  background-size: 45% auto;
+  background-size: 50%;
   background-position: center;
   background-repeat: no-repeat;
   transform: rotate(var(--degree, 0deg));
@@ -449,6 +456,7 @@ button {
 
 .timer {
   margin-inline-start: 1rem;
+  font-size: clamp(0.5rem, 2vw, 0.75rem);
 }
 
 /*# sourceMappingURL=style.css.map */

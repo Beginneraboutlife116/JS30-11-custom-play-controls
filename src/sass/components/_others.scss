@@ -4,6 +4,10 @@
   }
 }
 
+.volume {
+  width: 12.5%;
+}
+
 .setting {
   margin-inline-start: auto;
   position: relative;
@@ -13,8 +17,7 @@
     position: absolute;
     inset: 0;
     background-image: url(./src/image/setting-icon.png);
-    padding: clamp(0.5rem, 2.5vw, 1rem) clamp(1rem, 4vw, 1.5rem);
-    background-size: 45% auto;
+    background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
     transform: rotate(var(--degree, 0deg));
@@ -39,4 +42,5 @@
 
 .timer {
   margin-inline-start: 1rem;
+  font-size: clamp(0.5rem, 2vw, .75rem);
 }

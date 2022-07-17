@@ -10,4 +10,4 @@
 - [x] Skip ahead without button
 - [x] Skip ahead style
 - [x] Go fullScreen
-- [ ] Timer
+- [x] Timer
