@@ -234,7 +234,7 @@ button {
   opacity: 0;
   transform: translateY(100%) scaleY(0);
 }
-.player:hover > .player__controls {
+.player:hover > .player__controls, .player:where(:focus, :focus-visible, :focus-within) > .player__controls {
   opacity: 1;
   transform: translateY(0) scaleY(1);
 }
@@ -259,14 +259,14 @@ button {
   --slider-width: 0;
   transition: width 150ms linear;
 }
-.volume:hover + .player__slider[name=volume], .player__slider[name=volume]:hover {
+.volume:hover + .player__slider[name=volume], .player__slider[name=volume]:hover, .player__slider[name=volume]:where(:focus, :focus-within, :focus-visible) {
   --slider-width: clamp(3rem, 15vw, 5rem);
   --thumb-width: clamp(0.75rem, 3vw, 1rem);
 }
-.volume:hover + .player__slider[name=volume]::-webkit-slider-thumb, .player__slider[name=volume]:hover::-webkit-slider-thumb {
+.volume:hover + .player__slider[name=volume]::-webkit-slider-thumb, .player__slider[name=volume]:hover::-webkit-slider-thumb, .player__slider[name=volume]:where(:focus, :focus-within, :focus-visible)::-webkit-slider-thumb {
   transition: width 0ms linear 150ms;
 }
-.volume:hover + .player__slider[name=volume]::-moz-range-thumb, .player__slider[name=volume]:hover::-moz-range-thumb {
+.volume:hover + .player__slider[name=volume]::-moz-range-thumb, .player__slider[name=volume]:hover::-moz-range-thumb, .player__slider[name=volume]:where(:focus, :focus-within, :focus-visible)::-moz-range-thumb {
   transition: width 0ms linear 150ms;
 }
 .player__slider[name=playbackRate] {

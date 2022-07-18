@@ -9,6 +9,8 @@ const progressBar = document.querySelector(".progress__bar")
 const playOrPauseBtn = document.querySelector(".play-pause")
 const volumeBtn = document.querySelector(".volume")
 const settingBtn = document.querySelector(".setting")
+const inputs = document.querySelectorAll("input[type='range']")
+let doesInputFocus = false
 
 const dialog = document.querySelector(".dialog")
 
@@ -161,11 +163,11 @@ class Slider {
 
 //* Program
 const volumeSlider = new Slider({
-  htmlElement: document.querySelector("input[id='volume']"),
+  htmlElement: inputs[0],
   mediaAPI: "volume"
 })
 const playbackRateSlider = new Slider({
-  htmlElement: document.querySelector("input[name='playbackRate']"),
+  htmlElement: inputs[1],
   mediaAPI: "playbackRate"
 })
 const supportsVideo = !!document.createElement("video").canPlayType
@@ -252,9 +254,14 @@ window.addEventListener("click", (e) => {
   }
 })
 
+inputs.forEach(input => {
+  input.addEventListener('focusin', () => doesInputFocus = true)
+  input.addEventListener('focusout', () => doesInputFocus = false)
+})
+
 window.addEventListener("keydown", (e) => {
   let lastArrow
-  if (e.code === "ArrowRight") {
+  if (e.code === "ArrowRight" && !doesInputFocus) {
     video.currentTime += 10
     skipSignal.dataset.state = "visible"
     skipCircle.setAttribute("data-state", "forward")
@@ -271,7 +278,7 @@ window.addEventListener("keydown", (e) => {
       )
     })
   }
-  if (e.code === "ArrowLeft") {
+  if (e.code === "ArrowLeft" && !doesInputFocus) {
     video.currentTime -= 10
     skipSignal.dataset.state = "visible"
     skipCircle.setAttribute("data-state", "backward")
