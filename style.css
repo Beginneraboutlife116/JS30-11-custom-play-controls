@@ -84,6 +84,7 @@ h6 {
   --bg-image: conic-gradient(at 0% 0%, snow, white);
   --bg-progress: hwb(0 100% 0% / 0.4);
   --bg-dialog: hwb(0 0% 100% / 0.75);
+  --bg-controls: hwb(0 0% 100% / 0.35);
   --clr-progress-bar: hwb(0 0% 0%);
   --clr-font: hwb(0 100% 0% / 0.8);
   --clr-default-arrow: hwb(0 100% 0%);
@@ -210,6 +211,7 @@ button {
 
 .player {
   position: relative;
+  overflow: hidden;
 }
 .player__video {
   width: 100%;
@@ -228,6 +230,13 @@ button {
   inset: auto 0 0 0;
   display: flex;
   flex-wrap: wrap;
+  box-shadow: 0 -5vmin 30vmin var(--bg-controls);
+  opacity: 0;
+  transform: translateY(100%) scaleY(0);
+}
+.player:hover > .player__controls {
+  opacity: 1;
+  transform: translateY(0) scaleY(1);
 }
 .player__button {
   width: 5%;

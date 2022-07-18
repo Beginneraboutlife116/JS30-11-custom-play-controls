@@ -1,5 +1,6 @@
 .player {
   position: relative;
+  overflow: hidden;
 
   &__video {
     width: 100%;
@@ -20,6 +21,14 @@
     inset: auto 0 0 0;
     display: flex;
     flex-wrap: wrap;
+    box-shadow: 0 -5vmin 30vmin var(--bg-controls);
+    opacity: 0;
+    transform: translateY(100%) scaleY(0);
+  }
+
+  &:hover > &__controls {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
   }
 
   &__button {
