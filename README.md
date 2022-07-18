@@ -71,6 +71,7 @@ Knowing the API: `fullscreenEnabled`, `fullscreenElement`, `exitFullscreen`, `re
 - [Cross browser video player](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/cross_browser_video_player) - This helped me how ot build a custom player video controls for cross browser.
 - [Video player styling basics](https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Video_player_styling_basics) - This helped me how to style the progress bar and how to deal with some browser which doesn't support progress tag.
 - [Creating A Custom Range Input That Looks Consistent Across All Browsers](https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/?utm_source=convertkit&utm_medium=email&utm_campaign=Outlined+text%2C+centering+content%2C+Open+Props%2C+and+even+some+JS+content%21%20-%207624173) - This helped me to custom my input bar to mimic youtube player.
+  - If you want a tool to help you generator custom range input style, author has offered a generator written by herself, here's the link: [https://range-input-css.netlify.app/](https://range-input-css.netlify.app/)
 
 ## Author
 
