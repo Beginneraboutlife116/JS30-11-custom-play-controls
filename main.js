@@ -30,6 +30,7 @@ function playOrPauseVideo() {
   const currentState = video.paused || video.ended ? "play" : "pause"
   video[currentState]()
   changeButtonState("playOrPause")
+  controls.dataset.style = currentState
 }
 
 function changeButtonState(type) {

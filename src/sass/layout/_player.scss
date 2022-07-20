@@ -27,7 +27,8 @@
   }
 
   &:hover > &__controls,
-  &:where(:focus, :focus-visible, :focus-within) > &__controls {
+  &:where(:focus, :focus-visible, :focus-within) > &__controls,
+  &__controls[data-style="pause"] {
     opacity: 1;
     transform: translateY(0) scaleY(1);
   }

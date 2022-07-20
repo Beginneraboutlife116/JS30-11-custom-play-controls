@@ -234,7 +234,7 @@ button {
   opacity: 0;
   transform: translateY(100%) scaleY(0);
 }
-.player:hover > .player__controls, .player:where(:focus, :focus-visible, :focus-within) > .player__controls {
+.player:hover > .player__controls, .player:where(:focus, :focus-visible, :focus-within) > .player__controls, .player__controls[data-style=pause] {
   opacity: 1;
   transform: translateY(0) scaleY(1);
 }
